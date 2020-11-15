@@ -2,6 +2,7 @@
 #include "ESC_DJI.h"
 
 ESC_DJI motor;
+int motorCurrent[4] = {0};
 
 // CAN_message_t buf;
 // CAN_message_t msg;
@@ -9,6 +10,8 @@ ESC_DJI motor;
 void timerInt(){
   motor.getCanData();
   Serial.println(motor.wEscData[0].angle);
+  motorCurrent[0] = 1000;
+  motor.driveWheel(motorCurrent);
 }
 
 void setup() {
